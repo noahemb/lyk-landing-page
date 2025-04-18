@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LYK Admin - Backoffice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="login-page" style="display: none;">
+        <div class="login-container">
+            <div class="login-form">
+                <div class="login-logo">
+                    <h2>LYK</h2>
+                </div>
+                <h3>Connexion admin</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Se connecter</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>LYK</h2>
+            </div>
+            <div class="sidebar-menu">
+                <a href="#" class="menu-item active">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Tableau de bord</span>
+                </a>
+                <a href="#" class="menu-item" id="subscribers-menu">
+                    <i class="fas fa-users"></i>
+                    <span>Inscrits</span>
+                </a>
+                <a href="#" class="menu-item" id="newsletter-menu">
+                    <i class="fas fa-envelope"></i>
+                    <span>Newsletter</span>
+                </a>
+                <a href="#" class="menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Paramètres</span>
+                </a>
+                <a href="#" class="menu-item" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Déconnexion</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Content -->
+            <div id="dashboard-content">
+                <div class="header">
+                    <h1>Tableau de bord</h1>
+                    <div class="user-info">
+                        <img src="/api/placeholder/50/50" alt="Admin">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total des inscrits</h3>
+                        <div class="number" id="total-subscribers">0</div>
+                        <div class="trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+5% cette semaine</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Nouveaux inscrits (7j)</h3>
+                        <div class="number" id="new-subscribers">0</div>
+                        <div class="trend">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>+12% cette semaine</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Taux d'ouverture</h3>
+                        <div class="number">0%</div>
+                        <div class="trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>Pas de données</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Taux de conversion</h3>
+                        <div class="number">0%</div>
+                        <div class="trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>Pas de données</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Derniers inscrits -->
+                <div class="data-container">
+                    <div class="data-header">
+                        <h2 class="data-title">Derniers inscrits</h2>
+                        <div class="search-export">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher...">
+                            </div>
+                            <button class="export-btn">
+                                <i class="fas fa-download"></i>
+                                Exporter
+                            </button>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Date d'inscription</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subscribers-table-body">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribers Content -->
+            <div id="subscribers-content" style="display: none;">
+                <div class="header">
+                    <h1>Gestion des inscrits</h1>
+                    <div class="user-info">
+                        <img src="/api/placeholder/50/50" alt="Admin">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <div class="data-container">
+                    <div class="data-header">
+                        <h2 class="data-title">Liste des inscrits</h2>
+                        <div class="search-export">
+                            <div class="search-bar">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Rechercher...">
+                            </div>
+                            <button class="export-btn" id="export-csv-btn">
+                                <i class="fas fa-download"></i>
+                                Exporter CSV
+                            </button>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="select-all"></th>
+                                <th>Nom</th>
+                                <th>Email</th>
+                                <th>Date d'inscription</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="full-subscribers-table">
+                            <!-- Les données seront chargées dynamiquement -->
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <button><i class="fas fa-chevron-left"></i></button>
+                        <button class="active">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Content -->
+            <div id="newsletter-content" style="display: none;">
+                <div class="header">
+                    <h1>Gestion des newsletters</h1>
+                    <div class="user-info">
+                        <img src="/api/placeholder/50/50" alt="Admin">
+                        <span>Admin</span>
+                    </div>
+                </div>
+
+                <div class="newsletter-form">
+                    <h3>Créer une nouvelle newsletter</h3>
+                    <form id="create-newsletter-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newsletter-subject">Sujet</label>
+                                <input type="text" id="newsletter-subject" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newsletter-preview">Texte de prévisualisation</label>
+                                <input type="text" id="newsletter-preview" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Contenu de l'email</label>
+                            <div class="text-editor">
+                                <div class="editor-toolbar">
+                                    <button type="button"><i class="fas fa-bold"></i></button>
+                                    <button type="button"><i class="fas fa-italic"></i></button>
+                                    <button type="button"><i class="fas fa-underline"></i></button>
+                                    <button type="button"><i class="fas fa-link"></i></button>
+                                    <button type="button"><i class="fas fa-image"></i></button>
+                                    <button type="button"><i class="fas fa-list"></i></button>
+                                    <button type="button"><i class="fas fa-list-ol"></i></button>
+                                </div>
+                                <div class="editor-content" contenteditable="true"></div>
+                            </div>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="secondary-btn" id="preview-btn">Aperçu</button>
+                            <button type="button" class="secondary-btn" id="save-draft-btn">Enregistrer comme brouillon</button>
+                            <button type="submit" class="submit-btn">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="view-subscriber-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title">Détails de l'inscrit</h2>
+            <div id="subscriber-details">
+                <!-- Détails chargés dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <div id="confirm-delete-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 class="modal-title">Confirmer la suppression</h2>
+            <p>Êtes-vous sûr de vouloir supprimer cet inscrit ? Cette action est irréversible.</p>
+            <div class="button-group">
+                <button class="secondary-btn close-modal">Annuler</button>
+                <button class="submit-btn" id="confirm-delete-btn">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
